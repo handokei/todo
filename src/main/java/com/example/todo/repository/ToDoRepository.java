@@ -2,9 +2,9 @@ package com.example.todo.repository;
 
 import com.example.todo.dto.ToDoResponseDto;
 import com.example.todo.entity.ToDo;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface ToDoRepository {
@@ -13,9 +13,9 @@ public interface ToDoRepository {
 
     List<ToDoResponseDto> readAllToDo();
 
-    ToDo readOneTodo(Long id);
+    Optional<ToDo> readOneTodo(Long id);
 
-    ToDo updateTodo(ToDo todo);
+    int updateTodo(Long id, String name, String planTodo);
 
     void deleteTodo(Long id);
 }

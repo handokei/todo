@@ -8,9 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ToDoServiceImpl implements ToDoService {
@@ -27,9 +26,8 @@ public class ToDoServiceImpl implements ToDoService {
 
 
         //요청 받은 데이터 객체 생성
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        String now = simpleDateFormat.format(new Date());
-        ToDo todo = new ToDo(dto.getName(), dto.getPassword(), dto.getPlanTodo(),now,now);
+
+        ToDo todo = new ToDo(dto.getName(), dto.getPassword(), dto.getPlanTodo(), dto.getCreateDate());
         return  toDoRepository.saveTodo(todo);
     }
 
@@ -42,40 +40,44 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public ToDoResponseDto readOneTodo(Long id) {
-        ToDo todo =toDoRepository.readOneTodo(id);
+        Optional<ToDo> optionalToDo = toDoRepository.readOneTodo(id);
         //NPE 방지 예외 처리
-        if (todo == null) {
+        if (optionalToDo.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        return new ToDoResponseDto(todo);
+        return new ToDoResponseDto(optionalToDo.get());
     }
 
     //이름,할 일 수정
     @Override
     public ToDoResponseDto updateTodo(Long id, String name,String password, String planToDo,String editDate) {
 
-
-        ToDo todo = toDoRepository.readOneTodo(id);
-
-        if (todo == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        Optional<ToDo> optionalToDo = toDoRepository.readOneTodo(id);
 
         if(name == null || password == null || planToDo == null) {
             throw new ResponseStatusException((HttpStatus.BAD_REQUEST));
         }
+        ToDo todo =optionalToDo.get();
+        int updateRow = toDoRepository.updateTodo(id,name,planToDo);
 
         todo.editTodoAndName(planToDo,name); //
-        ToDo updateTodo = toDoRepository.updateTodo(todo);
-        return new ToDoResponseDto(updateTodo);
+
+        if (updateRow == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        if (!todo.getPassword().equals(password)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"비밀번호 불일치");
+        }
+
+        return new ToDoResponseDto(toDoRepository.readOneTodo(id).get());
     }
 
     @Override
     public ToDoResponseDto deleteTodo(Long id) {
-        ToDo todo = toDoRepository.readOneTodo(id);
+        Optional<ToDo> optionalToDo = toDoRepository.readOneTodo(id);
 
-        if (todo == null) {
+        if (optionalToDo == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         toDoRepository.deleteTodo(id);
