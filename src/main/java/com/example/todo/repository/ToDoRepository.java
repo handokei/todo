@@ -15,7 +15,7 @@ public interface ToDoRepository {
 
     Optional<ToDo> readOneTodo(Long id);
 
-    int updateTodo(Long id, String name, String password, String planTodo,String editDate);
+    int updateTodo(Long id, String name, String password, String planTodo);
 
     int deleteTodo(Long id);
 }

@@ -17,8 +17,7 @@ public class ToDo {
     private String createDate;
     private String editDate;
 
-    public ToDo (long id, String name, String password, String planTodo, String createDate){
-        this.id = id;
+    public ToDo ( String name, String password, String planTodo){
         this.name = name;
         this.password = password;
         this.planTodo = planTodo;
@@ -26,7 +25,7 @@ public class ToDo {
         this.createDate = simpleDateFormat.format(new Date());
         this.editDate = simpleDateFormat.format(new Date());
     }
-    public ToDo (String name, String password, String planTodo, String createDate,String editDate){
+    public ToDo (String name, String password, String planTodo, String createDate){
         this.name = name;
         this.password = password;
         this.planTodo = planTodo;

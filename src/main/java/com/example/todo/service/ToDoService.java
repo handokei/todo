@@ -13,7 +13,7 @@ public interface ToDoService {
 
     ToDoResponseDto readOneTodo(Long id);
 
-    ToDoResponseDto updateTodo(Long id, String name, String password,String planToDo,String editDate);
+    ToDoResponseDto updateTodo(Long id, String name, String password,String planToDo);
 
     ToDoResponseDto deleteTodo(Long id);
 }

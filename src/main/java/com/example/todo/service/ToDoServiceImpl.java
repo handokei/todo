@@ -30,7 +30,7 @@ public class ToDoServiceImpl implements ToDoService {
 
         //요청 받은 데이터 객체 생성
 
-        ToDo todo = new ToDo(dto.getName(), dto.getPassword(), dto.getPlanTodo(), dto.getCreateDate(), dto.getEditDate());
+        ToDo todo = new ToDo(dto.getName(), dto.getPassword(), dto.getPlanTodo());
         return  toDoRepository.saveTodo(todo);
     }
 
@@ -55,7 +55,7 @@ public class ToDoServiceImpl implements ToDoService {
     //이름,할 일 수정
     @Transactional
     @Override
-    public ToDoResponseDto updateTodo(Long id, String name,String password, String planTodo,String editDate) {
+    public ToDoResponseDto updateTodo(Long id, String name,String password, String planTodo) {
 
         System.out.println("name = " + name);
         System.out.println("password = " + password);
@@ -77,7 +77,8 @@ public class ToDoServiceImpl implements ToDoService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"비밀번호 불일치");
         }
         todo.editTodoAndName(planTodo,name);
-        int updatedTodo = toDoRepository.updateTodo(id, name, password, planTodo,updateEditDate);
+
+        int updatedTodo = toDoRepository.updateTodo(id, name, password, planTodo);
 
         return new ToDoResponseDto(toDoRepository.readOneTodo(id).get());
     }

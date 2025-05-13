@@ -47,7 +47,7 @@ public class ToDoController {
     public ResponseEntity<ToDoResponseDto> updateTodo(
             @PathVariable Long id,
             @RequestBody ToDoRequestDto dto) {
-        return new ResponseEntity<>(todoService.updateTodo(id,dto.getName(), dto.getPassword(), dto.getPlanTodo(), dto.getEditDate()),HttpStatus.OK);
+        return new ResponseEntity<>(todoService.updateTodo(id,dto.getName(), dto.getPassword(), dto.getPlanTodo()),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

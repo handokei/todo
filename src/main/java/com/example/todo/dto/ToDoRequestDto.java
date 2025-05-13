@@ -11,8 +11,4 @@ public class ToDoRequestDto {
     private String name;
     private String password;
     private String planTodo;
-    private String createDate;
-    private String editDate;
-
-
 }
