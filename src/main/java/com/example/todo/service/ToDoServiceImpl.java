@@ -56,7 +56,7 @@ public class ToDoServiceImpl implements ToDoService {
 
     //이름,할 일 수정
     @Override
-    public ToDoResponseDto updatePlanName(Long id, String name,String password, String planToDo,String editDate) {
+    public ToDoResponseDto updateTodo(Long id, String name,String password, String planToDo,String editDate) {
 
 
         ToDo todo = toDoRepository.readOneTodo(id);
@@ -70,8 +70,7 @@ public class ToDoServiceImpl implements ToDoService {
         }
 
         todo.editTodoAndName(planToDo,name);
-        ToDo updateTodo = toDoRepository.readOneTodo(id);
-
+        ToDo updateTodo = toDoRepository.updateTodo(todo);
         return new ToDoResponseDto(updateTodo);
     }
 }

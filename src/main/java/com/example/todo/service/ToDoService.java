@@ -13,5 +13,5 @@ public interface ToDoService {
 
     ToDoResponseDto readOneTodo(Long id);
 
-    ToDoResponseDto updatePlanName(Long id, String name, String password,String planToDo,String editDate);
+    ToDoResponseDto updateTodo(Long id, String name, String password,String planToDo,String editDate);
 }

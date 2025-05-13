@@ -15,5 +15,5 @@ public interface ToDoRepository {
 
     ToDo readOneTodo(Long id);
 
-    ToDo updateTodo(Long id);
+    ToDo updateTodo(ToDo todo);
 }

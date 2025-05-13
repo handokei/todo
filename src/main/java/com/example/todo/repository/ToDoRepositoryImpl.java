@@ -44,7 +44,10 @@ public class ToDoRepositoryImpl implements ToDoRepository {
     }
 
     @Override
-    public ToDo updateTodo(Long id) {
-        return toDoMap.get(id);
+    public ToDo updateTodo(ToDo todo) {
+
+        toDoMap.put(todo.getId(), todo);
+        return todo;
     }
+
 }
