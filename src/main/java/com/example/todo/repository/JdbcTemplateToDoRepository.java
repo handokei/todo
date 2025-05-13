@@ -3,11 +3,14 @@ package com.example.todo.repository;
 import com.example.todo.dto.ToDoResponseDto;
 import com.example.todo.entity.ToDo;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,7 +28,7 @@ public class JdbcTemplateToDoRepository implements ToDoRepository{
     @Override
     public ToDoResponseDto saveTodo(ToDo todo) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("todo").usingGeneratedKeyColumns("id");
+        jdbcInsert.withTableName("schedule").usingGeneratedKeyColumns("id");
 
         Map<String,Object> parameters = new HashMap<>();
         parameters.put("name",todo.getName());
@@ -46,7 +49,7 @@ public class JdbcTemplateToDoRepository implements ToDoRepository{
 
     @Override
     public List<ToDoResponseDto> readAllToDo() {
-        return List.of();
+        return jdbcTemplate.query("SELECT * FROM schedule", todoRowMapper());
     }
 
     @Override
@@ -62,5 +65,21 @@ public class JdbcTemplateToDoRepository implements ToDoRepository{
     @Override
     public void deleteTodo(Long id) {
 
+    }
+
+    private RowMapper<ToDoResponseDto> todoRowMapper(){
+
+        return new RowMapper<ToDoResponseDto>() {
+            @Override
+            public ToDoResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return new ToDoResponseDto(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getString("planTodo"),
+                        rs.getString("createDate"),
+                        rs.getString("editDate")
+                );
+            }
+        };
     }
 }
