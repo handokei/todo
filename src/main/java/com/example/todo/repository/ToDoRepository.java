@@ -14,4 +14,6 @@ public interface ToDoRepository {
     List<ToDoResponseDto> readAllToDo();
 
     ToDo readOneTodo(Long id);
+
+    ToDo updateTodo(Long id);
 }

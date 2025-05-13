@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @Getter
 @AllArgsConstructor
 public class ToDo {
@@ -23,5 +25,12 @@ public class ToDo {
         this.planTodo = planTodo;
         this.createDate = createDate;
         this.editDate = editDate;
+    }
+
+    public void editTodoAndName(String planToDo, String name) {
+        this.planTodo = planToDo;
+        this.name = name;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        this.editDate = simpleDateFormat.format(new Date());
     }
 }

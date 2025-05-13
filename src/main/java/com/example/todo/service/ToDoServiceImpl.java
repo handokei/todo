@@ -53,4 +53,25 @@ public class ToDoServiceImpl implements ToDoService {
 
         return new ToDoResponseDto(todo);
     }
+
+    //이름,할 일 수정
+    @Override
+    public ToDoResponseDto updatePlanName(Long id, String name,String password, String planToDo,String editDate) {
+
+
+        ToDo todo = toDoRepository.readOneTodo(id);
+
+        if (todo == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        if(name == null || password == null || planToDo == null) {
+            throw new ResponseStatusException((HttpStatus.BAD_REQUEST));
+        }
+
+        todo.editTodoAndName(planToDo,name);
+        ToDo updateTodo = toDoRepository.readOneTodo(id);
+
+        return new ToDoResponseDto(updateTodo);
+    }
 }

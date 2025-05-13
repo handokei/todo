@@ -42,6 +42,14 @@ public class ToDoController {
         return new ResponseEntity<>(todoService.readOneTodo(id), HttpStatus.OK);
     }
 
+    //일정 수정
+    @PatchMapping("/{id}")
+    public ResponseEntity<ToDoResponseDto> updatePlanName(
+            @PathVariable Long id,
+            @RequestBody ToDoRequestDto dto) {
+        return new ResponseEntity<>(todoService.updatePlanName(id,dto.getName(), dto.getPassword(), dto.getPlanTodo(), dto.getEditDate()),HttpStatus.OK);
+    }
+
 
 
 
