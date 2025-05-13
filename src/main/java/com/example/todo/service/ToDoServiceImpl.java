@@ -30,10 +30,7 @@ public class ToDoServiceImpl implements ToDoService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
         String now = simpleDateFormat.format(new Date());
         ToDo todo = new ToDo(dto.getName(), dto.getPassword(), dto.getPlanTodo(),now,now);
-
-        ToDo savedToDo = toDoRepository.saveToDo(todo);
-
-        return new ToDoResponseDto(savedToDo);
+        return  toDoRepository.saveTodo(todo);
     }
 
     @Override

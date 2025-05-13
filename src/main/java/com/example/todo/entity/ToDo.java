@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 public class ToDo {
-    @Setter
+
     private Long id;
     private String name;
     private String password;
@@ -23,8 +23,9 @@ public class ToDo {
         this.name = name;
         this.password = password;
         this.planTodo = planTodo;
-        this.createDate = createDate;
-        this.editDate = editDate;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        this.createDate = simpleDateFormat.format(new Date());
+        this.editDate = simpleDateFormat.format(new Date());
     }
 
     public void editTodoAndName(String planToDo, String name) {

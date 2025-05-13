@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ToDoRepository {
 
-    ToDo saveToDo(ToDo todo);
+    ToDoResponseDto saveTodo(ToDo todo);
 
     List<ToDoResponseDto> readAllToDo();
 

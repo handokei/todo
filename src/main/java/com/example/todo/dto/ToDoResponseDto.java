@@ -1,11 +1,13 @@
 package com.example.todo.dto;
 
 import com.example.todo.entity.ToDo;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 @Getter
+@AllArgsConstructor
 public class ToDoResponseDto {
 
     private Long id;
