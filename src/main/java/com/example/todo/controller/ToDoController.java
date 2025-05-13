@@ -29,11 +29,17 @@ public class ToDoController {
 
         return new ResponseEntity<>(todoService.saveTodo(dto), HttpStatus.CREATED);
     }
-
+    //전체조회
     @GetMapping
     public List<ToDoResponseDto> readAllTodo() {
 
         return todoService.readAllToDo();
+    }
+
+    //단건조회
+    @GetMapping("/{id}")
+    public ResponseEntity<ToDoResponseDto> readOneTodo(@PathVariable Long id) {
+        return new ResponseEntity<>(todoService.readOneTodo(id), HttpStatus.OK);
     }
 
 

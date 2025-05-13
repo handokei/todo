@@ -4,7 +4,9 @@ import com.example.todo.dto.ToDoRequestDto;
 import com.example.todo.dto.ToDoResponseDto;
 import com.example.todo.entity.ToDo;
 import com.example.todo.repository.ToDoRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,5 +41,16 @@ public class ToDoServiceImpl implements ToDoService {
 
         List<ToDoResponseDto> allTodos = toDoRepository.readAllToDo();
         return allTodos;
+    }
+
+    @Override
+    public ToDoResponseDto readOneTodo(Long id) {
+        ToDo todo =toDoRepository.readOneTodo(id);
+        //NPE 방지 예외 처리
+        if (todo == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        return new ToDoResponseDto(todo);
     }
 }

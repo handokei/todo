@@ -12,4 +12,6 @@ public interface ToDoRepository {
     ToDo saveToDo(ToDo todo);
 
     List<ToDoResponseDto> readAllToDo();
+
+    ToDo readOneTodo(Long id);
 }

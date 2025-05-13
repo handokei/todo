@@ -36,4 +36,10 @@ public class ToDoRepositoryImpl implements ToDoRepository {
         }
      return allTodo;
     }
+
+    @Override
+    public ToDo readOneTodo(Long id) {
+
+        return todoList.get(id);
+    }
 }

@@ -10,4 +10,6 @@ public interface ToDoService {
     ToDoResponseDto saveTodo(ToDoRequestDto dto);
 
     List<ToDoResponseDto> readAllToDo() ;
+
+    ToDoResponseDto readOneTodo(Long id);
 }
