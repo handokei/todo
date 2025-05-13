@@ -26,13 +26,12 @@ public class ToDo {
         this.createDate = simpleDateFormat.format(new Date());
         this.editDate = simpleDateFormat.format(new Date());
     }
-    public ToDo (String name, String password, String planTodo, String createDate){
+    public ToDo (String name, String password, String planTodo, String createDate,String editDate){
         this.name = name;
         this.password = password;
         this.planTodo = planTodo;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        this.createDate = simpleDateFormat.format(new Date());
-        this.editDate = simpleDateFormat.format(new Date());
+        this.createDate = createDate;
+        this.editDate = editDate;
     }
 
 
