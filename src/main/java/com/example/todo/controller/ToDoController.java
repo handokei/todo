@@ -27,10 +27,6 @@ public class ToDoController {
     @PostMapping
     public ResponseEntity<ToDoResponseDto> createTodo(@RequestBody ToDoRequestDto dto) {
 
-        //요청 받은 데이터 객체 생성
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        String now = simpleDateFormat.format(new Date());
-
         return new ResponseEntity<>(todoService.saveTodo(dto), HttpStatus.CREATED);
     }
 

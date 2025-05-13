@@ -6,6 +6,8 @@ import com.example.todo.entity.ToDo;
 import com.example.todo.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,8 +23,11 @@ public class ToDoServiceImpl implements ToDoService {
     @Override
     public ToDoResponseDto saveTodo(ToDoRequestDto dto) {
 
-        //요청받은 데이터로 객체 생성 ID 없음.
-        ToDo todo = new ToDo(dto.getName(), dto.getPassword(), dto.getPlanTodo(), dto.getCreateDate(), dto.getEditDate());
+
+        //요청 받은 데이터 객체 생성
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        String now = simpleDateFormat.format(new Date());
+        ToDo todo = new ToDo(dto.getName(), dto.getPassword(), dto.getPlanTodo(),now,now);
 
         ToDo savedToDo = toDoRepository.saveToDo(todo);
 

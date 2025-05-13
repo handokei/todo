@@ -15,6 +15,7 @@ public class ToDoRepositoryImpl implements ToDoRepository {
     @Override
     public ToDo saveToDo(ToDo todo) {
 
+        //요청받은 데이터로 객체 생성 ID 없음.
         Long todoId = todoList.isEmpty() ? 1 : Collections.max(todoList.keySet()) + 1;
         todo.setId(todoId);
 
