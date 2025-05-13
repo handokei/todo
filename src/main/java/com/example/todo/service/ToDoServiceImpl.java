@@ -69,8 +69,19 @@ public class ToDoServiceImpl implements ToDoService {
             throw new ResponseStatusException((HttpStatus.BAD_REQUEST));
         }
 
-        todo.editTodoAndName(planToDo,name);
+        todo.editTodoAndName(planToDo,name); //
         ToDo updateTodo = toDoRepository.updateTodo(todo);
         return new ToDoResponseDto(updateTodo);
+    }
+
+    @Override
+    public ToDoResponseDto deleteTodo(Long id) {
+        ToDo todo = toDoRepository.readOneTodo(id);
+
+        if (todo == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        toDoRepository.deleteTodo(id);
+        return null;
     }
 }

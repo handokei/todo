@@ -50,6 +50,13 @@ public class ToDoController {
         return new ResponseEntity<>(todoService.updateTodo(id,dto.getName(), dto.getPassword(), dto.getPlanTodo(), dto.getEditDate()),HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ToDoResponseDto> deleteTodo(@PathVariable Long id){
+        todoService.deleteTodo(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 

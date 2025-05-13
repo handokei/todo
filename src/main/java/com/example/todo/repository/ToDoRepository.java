@@ -16,4 +16,6 @@ public interface ToDoRepository {
     ToDo readOneTodo(Long id);
 
     ToDo updateTodo(ToDo todo);
+
+    void deleteTodo(Long id);
 }

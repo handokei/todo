@@ -50,4 +50,9 @@ public class ToDoRepositoryImpl implements ToDoRepository {
         return todo;
     }
 
+    @Override
+    public void deleteTodo(Long id) {
+        toDoMap.remove(id);
+    }
+
 }
