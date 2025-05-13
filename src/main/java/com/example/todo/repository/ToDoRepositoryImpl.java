@@ -27,6 +27,7 @@ public class ToDoRepositoryImpl implements ToDoRepository {
     @Override
     public List<ToDoResponseDto> readAllToDo() {
 
+        //리스트 초기화
         List<ToDoResponseDto> allTodo = new ArrayList<>();
 
         for (ToDo todo : todoList.values()) {

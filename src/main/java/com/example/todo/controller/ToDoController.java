@@ -32,6 +32,7 @@ public class ToDoController {
 
     @GetMapping
     public List<ToDoResponseDto> readAllTodo() {
+
         return todoService.readAllToDo();
     }
 

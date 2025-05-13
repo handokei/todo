@@ -9,5 +9,5 @@ public interface ToDoService {
 
     ToDoResponseDto saveTodo(ToDoRequestDto dto);
 
-    List<ToDoResponseDto> readAllToDo();
+    List<ToDoResponseDto> readAllToDo() ;
 }
