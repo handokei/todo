@@ -1,0 +1,15 @@
+package com.example.todo.repository;
+
+import com.example.todo.dto.ToDoResponseDto;
+import com.example.todo.entity.ToDo;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+
+public interface ToDoRepository {
+
+    ToDo saveToDo(ToDo todo);
+
+    List<ToDoResponseDto> readAllToDo();
+}
