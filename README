@@ -1,0 +1,19 @@
+CREATE TABLE `User` (
+  `USER_ID` <type>,
+  `NAME` <type>,
+  `PASSWORD` <type>,
+  `CREATE_DATE` <type>,
+  `EDIT_DATE` <type>,
+  PRIMARY KEY (`USER_ID`)
+);
+
+CREATE TABLE `Schedule` (
+  `SCHEDULE_ID` <type>,
+  `USER_ID` <type>,
+  `TODO` <type>,
+  `CREATE_DATE` <type>,
+  `EDIT_DATE` <type>,
+  PRIMARY KEY (`SCHEDULE_ID`),
+  FOREIGN KEY (`USER_ID`) REFERENCES `User`(`USER_ID`)
+);
+
