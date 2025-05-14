@@ -57,11 +57,6 @@ public class ToDoServiceImpl implements ToDoService {
     @Override
     public ToDoResponseDto updateTodo(Long id, String name,String password, String planTodo) {
 
-        System.out.println("name = " + name);
-        System.out.println("password = " + password);
-        System.out.println("planTodo = " + planTodo);
-        String updateEditDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        System.out.println("updateEditDate = " + updateEditDate);
         Optional<ToDo> optionalToDo = toDoRepository.readOneTodo(id);
 
         if (optionalToDo.isEmpty()) {
